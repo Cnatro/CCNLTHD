@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'courses.apps.CoursesConfig',
     'ckeditor',
-    'ckeditor_uploader'
+    'ckeditor_uploader',
+    'rest_framework',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -77,6 +79,19 @@ WSGI_APPLICATION = 'courseapi.wsgi.application'
 import pymysql
 
 pymysql.install_as_MySQLdb()
+
+
+import cloudinary
+import cloudinary.uploader
+from cloudinary.utils import cloudinary_url
+
+# Configuration
+cloudinary.config(
+    cloud_name = "dzwjtcby7",
+    api_key = "954977464151683",
+    api_secret = "C9maHjelNjdF-fjnFizEiqAPac8", # Click 'View API Keys' above to copy your API secret
+    secure=True
+)
 
 DATABASES = {
     'default': {
