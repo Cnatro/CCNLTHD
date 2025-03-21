@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'rest_framework',
     'drf_yasg',
+    'oauth2_provider',
 ]
 
 MIDDLEWARE = [
@@ -80,16 +81,15 @@ import pymysql
 
 pymysql.install_as_MySQLdb()
 
-
 import cloudinary
 import cloudinary.uploader
 from cloudinary.utils import cloudinary_url
 
 # Configuration
 cloudinary.config(
-    cloud_name = "dzwjtcby7",
-    api_key = "954977464151683",
-    api_secret = "C9maHjelNjdF-fjnFizEiqAPac8", # Click 'View API Keys' above to copy your API secret
+    cloud_name="dzwjtcby7",
+    api_key="954977464151683",
+    api_secret="C9maHjelNjdF-fjnFizEiqAPac8",  # Click 'View API Keys' above to copy your API secret
     secure=True
 )
 
@@ -120,7 +120,11 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+    )
+}
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -144,3 +148,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'courses.User'
 MEDIA_ROOT = '%s/courses/static/' % BASE_DIR
 CKEDITOR_UPLOAD_PATH = "ckeditors/lessons/"
+
+CLIENT_ID = "vjgDUOQuTXu3rj8slYDi5ymrEtMBWaBzuPxJStSD"
+CLIENT_SECRET = "YG8RvQykoj2WfdYcUUIzraMy5TTtKeEu4c76XAa2ly4j5T4MciN3jFFimxSCG4nezCrPsCE7W0VGaoyTIfHZx9usxiuELFv7DSdyThDUa1p8RtCk5v6zCmBWBeeHVQcK"
+OAUTH2_PROVIDER = { 'OAUTH2_BACKEND_CLASS': 'oauth2_provider.oauth2_backends.JSONOAuthLibCore' }
